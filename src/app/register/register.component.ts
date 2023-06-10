@@ -1,10 +1,67 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { RegisterInfo } from '../shared/models/model';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
+  form!: FormGroup<any>;
+  isSignUpSuccessful: boolean = false;
+  passwordMatched: boolean = true;
+  errorMessage: string = '';
 
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private fb: FormBuilder
+  ) {}
+
+  ngOnInit(): void {
+    this.form = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(32)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(32)]],
+    });
+  }
+
+  onSubmit(): void {
+    const { firstName, lastName, email, password, confirmPassword } = this.form?.value;
+    // console.log(firstName, lastName, email, password, confirmPassword)
+
+    if (!(firstName || lastName || email || password || confirmPassword)) {
+      return;
+    }
+    if (password !== confirmPassword) {
+      this.passwordMatched = false;
+    } else {
+      this.authService.emailExists(email).subscribe(data => {
+        this.passwordMatched = true;
+        this.register(data, {firstName, lastName, email, password});
+      })
+    }
+  }
+
+  register(data: boolean, registerInfo: RegisterInfo): void {
+    if (data === false) {
+      this.authService.register(registerInfo).subscribe(data => {
+        if (data) {
+          this.isSignUpSuccessful = true;
+          this.router.navigate(['/login']);
+        } else {
+          // this.errorMessage = err.error.message
+          this.isSignUpSuccessful = false;
+        }
+      })
+    } else {
+      this.errorMessage = 'Email already exists.';
+      this.isSignUpSuccessful = false;
+    }
+  }
 }
