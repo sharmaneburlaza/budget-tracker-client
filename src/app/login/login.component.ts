@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginInfo } from '../shared/models/model';
 import { AuthService } from '../shared/services/auth.service';
 import { TokenStorageService } from '../shared/services/token-storage.service';
 
@@ -33,6 +34,36 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // hello
+    const { email, password } = this.form?.value;
+    if (!(email || password)) {
+      return;
+    }
+    this.authService.emailExists(email).subscribe(data => {
+      if (data) {
+        this.login({email, password});
+      } else {
+        this.errorMessage = 'Email does not exists.';
+        this.isLoginFailed = true;
+      }
+    })
   }
+
+  login(loginInfo: LoginInfo): void {
+    this.authService.login(loginInfo).subscribe(
+      data => {
+        if (!data.error) {
+          console.log(data)
+          this.tokenStorage.saveToken(data.accessToken);
+          this.tokenStorage.saveUser(data);
+          this.isLoginFailed = false;
+          this.isLoggedIn = true;
+          this.router.navigate(['/records']);
+        } else {
+          this.isLoginFailed = true;
+          this.errorMessage = data.error === 'incorrect-password' ? 'Incorrect password!' : data.error;
+        }
+      }
+    );
+  }
+  
 }

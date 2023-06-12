@@ -12,6 +12,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RecordsComponent } from './records/records.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     ProfileComponent,
     CategoriesComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    RecordsComponent
   ],
   imports: [
     BrowserModule,
