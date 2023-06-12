@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LoginInfo, RegisterInfo } from '../models/model';
 
+const TOKEN_KEY = 'auth-token';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,10 @@ export class AuthService {
 
   register(registerInfo: RegisterInfo): Observable<any> {
     return this.http.post(this.AUTH_API + 'register', registerInfo, this.httpOptions);
+  }
+
+  isLoggedIn(): boolean {
+    return !!window.sessionStorage.getItem(TOKEN_KEY);
   }
 
 }
