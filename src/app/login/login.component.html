@@ -1,1 +1,46 @@
-<p>login works!</p>
+<div id="login-container" class="container-fluid d-flex align-items-center" style="height: 100vh;">
+    <div class="col-lg-8 offset-lg-2">
+        <div class="row">
+            <div class="col-md-6 p-5 column1" style="background-color: rgb(252, 253, 229);">
+                <h3 class="text-center pb-3">Welcome back!</h3>
+                <div class="">
+                    <div class="text-center">
+                        <img src="../../assets/images/bear-profile.png" alt="" height="150px">
+                    </div>
+                    <form [formGroup]="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
+                        <div class="form-group my-2">
+                            <input class="form-control" 
+                                formControlName="email" 
+                                type="email" 
+                                placeholder="Email">
+                        </div>
+                        <div class="form-group my-2">
+                            <input class="form-control" 
+                                formControlName="password" 
+                                type="password" placeholder="Password">
+                        </div>
+                        <div class="form-group my-4">
+                            <button id="signin" 
+                                class="btn btn-primary" 
+                                type="submit" 
+                                [disabled]="form.invalid"
+                            >
+                                Sign-in
+                            </button>
+                        </div>
+                        <div class="form-group">
+                            <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
+                                Login failed! {{ errorMessage }}
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="text-center">
+                    <p>Don't have an account yet? <a routerLink="/register">Sign-up</a></p>
+                </div>
+            </div>
+            <div class="col-md-6 column2-signin">
+            </div>
+          </div>
+    </div>
+</div>
