@@ -24,9 +24,6 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // if (this.tokenStorage.getToken()) {
-    //   this.isLoggedIn = true;
-    // }
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(32)]],
@@ -58,6 +55,7 @@ export class LoginComponent implements OnInit {
           this.isLoginFailed = false;
           this.isLoggedIn = true;
           this.router.navigate(['/records']);
+          window.location.reload();
         } else {
           this.isLoginFailed = true;
           this.errorMessage = data.error === 'incorrect-password' ? 'Incorrect password!' : data.error;

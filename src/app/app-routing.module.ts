@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: 'categories', component: CategoriesComponent },
   { path: 'records', component: RecordsComponent },
   { path: 'page-not-found', component: PageNotFoundComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'page-not-found' }
 ];
 
