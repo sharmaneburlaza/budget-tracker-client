@@ -87,13 +87,13 @@ export class CategoriesComponent implements OnInit {
   showAddDialog(): void {
     this.showDialog = true;
     this.isNew = true;
+    this.category = {type: '', name: ''};
   }
 
   showUpdateDialog(item: Category): void {
     this.showDialog = true;
     this.isNew = false;
     this.category = {...item};
-    console.log(this.category)
   }
 
   performSearch(query: any): void {

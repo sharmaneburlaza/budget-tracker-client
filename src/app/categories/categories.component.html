@@ -1,5 +1,8 @@
 <div class="m-4">
     <div class="d-flex">
+        <button type="button" class="btn btn-outline-success" (click)="showAddDialog()">
+            Add New Category
+        </button>
         <div class="input-group mx-2" style="max-width: 300px; max-height: 10px;">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="bi bi-search"></i></span>
@@ -10,13 +13,10 @@
                 [(ngModel)]="searchText"
                 (ngModelChange)="performSearch($event)">
         </div>
-        <button type="button" class="btn btn-outline-success" (click)="showAddDialog()">
-            Add New Category
-        </button>
     </div>
-    <div class="d-flex justify-content-start flex-wrap">
+    <div class="d-flex justify-content-start flex-wrap mt-4">
         <ng-container *ngFor="let item of categories">
-            <div class="card col-md-4 m-2">
+            <div class="card col-md-4 m-2" [ngClass]="[item.type === 'Income' ? 'green-card' : 'red-card' ]">
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
@@ -55,8 +55,8 @@
                     #type="ngModel"
                     >
                     <option value="" disabled selected>Select Type</option>
-                    <option value="income">Income</option>
-                    <option value="expense">Expense</option>
+                    <option value="Income">Income</option>
+                    <option value="Expense">Expense</option>
                 </select>
             </div>
             <div class="form-group my-2">

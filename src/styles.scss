@@ -38,3 +38,13 @@ input, p, h3, button {
     background-image: url('../src/assets/images/white-boat.jpeg');
     background-position: center;
 }
+
+.green-card {
+    border-color: green;
+    background-color: rgba(51, 170, 51, .1) ;
+}
+
+.red-card {
+    border-color: red;
+    background-color: rgba(170, 51, 51, 0.1) ;
+}

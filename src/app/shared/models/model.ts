@@ -31,3 +31,8 @@ export interface Record {
     createdOn?: Date | string,
     isDeleted?: boolean
 }
+
+export enum CategoryType {
+    Income = 'income',
+    Expense = 'expense'
+}

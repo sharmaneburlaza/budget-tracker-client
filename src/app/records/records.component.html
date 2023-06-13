@@ -1,1 +1,111 @@
-<p>records works!</p>
+<div class="m-4">
+    <div class="d-flex">
+        <button type="button" class="btn btn-outline-success" (click)="showAddDialog()">
+            Add New Record
+        </button>
+        <div class="input-group mx-2" style="max-width: 300px; max-height: 10px;">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="bi bi-search"></i></span>
+            </div>
+            <input type="text" 
+                class="form-control" 
+                placeholder="Search..."
+                [(ngModel)]="searchText"
+                (ngModelChange)="performSearch($event)">
+        </div>
+    </div>
+    <div class="d-flex justify-content-start flex-wrap mt-4">
+        <ng-container *ngFor="let item of records">
+            <div class="card col-md-6 m-2" [ngClass]="[item.categoryType === 'income' ? 'green-card' : 'red-card' ]">
+                <div class="card-body">
+                    <p>{{ item.createdOn | date: 'medium' }}</p>
+                    <p>Transaction amount: {{ item.amount | number: '.2' }} </p>
+                    <div class="row">
+                        <div class="col">
+                            <p> {{ item.categoryType }} </p>
+                        </div>
+                        <div class="col">
+                            <p> {{ item.categoryName }} </p>
+                        </div>
+                        <div class="col">
+                            <p> {{ item.description }} </p>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-dark border-0" (click)="showUpdateDialog(item)">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-danger border-0" (click)="deleteRecord(item)">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <p>Ending balance: {{ item.balance | number: '.2' }} </p>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
+
+<p-dialog [(visible)]="showDialog"
+    [style]="{width: '450px'}"
+    [modal]="true"
+    [closable]="false"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <h4 *ngIf="isNew" class="text-center mb-4">Add New Record</h4>
+        <h4 *ngIf="!isNew" class="text-center mb-4">Update Record</h4>
+        <form #f="ngForm" name="form" (ngSubmit)="f.form.valid && onSubmit()" novalidate>
+            <div class="form-group my-2">
+                <select type="select"
+                    name="type"
+                    class="form-control form-select"
+                    [(ngModel)]="record.categoryType"
+                    required
+                    #type="ngModel"
+                    (ngModelChange)="onCategoryTypeChange()"
+                    >
+                    <option value="" disabled selected>Select Type</option>
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+            </div>
+            <div class="form-group my-2">
+                <select type="select"
+                    name="name"
+                    class="form-control form-select" 
+                    [(ngModel)]="record.categoryName" 
+                    required 
+                    #name="ngModel">
+                    <option value="" disabled selected>Select Name</option>
+                    <option *ngFor="let item of selectedCategories" 
+                        [value]="item.name">
+                        {{ item.name }}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group my-2">
+                <input type="text" 
+                    class="form-control" 
+                    name="description" 
+                    placeholder="Description" 
+                    [(ngModel)]="record.description" 
+                    required 
+                    #description="ngModel">
+            </div>
+            <div class="form-group my-2">
+                <input type="text" 
+                    class="form-control" 
+                    name="amount" 
+                    placeholder="Amount" 
+                    [(ngModel)]="record.amount" 
+                    required 
+                    #amount="ngModel">
+            </div>
+            <div class="form-group my-4 text-center">
+                <button type="submit" class="btn btn-outline-primary mx-1">Submit</button>
+                <button type="button" class="btn btn-outline-secondary mx-1" (click)="close()">Cancel</button>
+            </div>
+        </form>
+    </ng-template>
+</p-dialog>
+
