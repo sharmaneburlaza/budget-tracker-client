@@ -14,6 +14,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RecordsComponent } from './records/records.component';
 
+import {DialogModule} from 'primeng/dialog';
+import { CardModule } from 'primeng/card';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +35,8 @@ import { RecordsComponent } from './records/records.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    DialogModule,
+    CardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

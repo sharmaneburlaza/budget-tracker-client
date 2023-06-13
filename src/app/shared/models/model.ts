@@ -18,7 +18,7 @@ export interface User extends RegisterInfo {
 export interface Category {
     name: string,
     type: string,
-    id?: string | undefined
+    _id?: string
 }
 
 export interface Record {

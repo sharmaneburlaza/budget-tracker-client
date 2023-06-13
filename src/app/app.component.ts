@@ -11,7 +11,7 @@ import { TokenStorageService } from './shared/services/token-storage.service';
 export class AppComponent {
   title = 'budget-tracker-client';
   isLoggedIn = this.authService.isLoggedIn();
-  paths: string[] = [];
+  paths: any = [];
 
   constructor(
     private authService: AuthService, 
@@ -21,11 +21,26 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.paths = [
-      'home',
-      'categories',
-      'records',
-      'dashboard',
-      'account',
+      {
+        name: 'home',
+        icon: 'bi bi-house-fill'
+      },
+      {
+        name: 'categories',
+        icon: 'bi bi-tag-fill'
+      },
+      {
+        name: 'records',
+        icon: 'bi bi-card-list'
+      },
+      {
+        name: 'dashboard',
+        icon: 'bi bi-clipboard2-pulse-fill'
+      },
+      {
+        name: 'account',
+        icon: 'bi bi-person-circle'
+      },
     ]
   }
 

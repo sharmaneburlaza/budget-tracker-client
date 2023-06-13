@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, of, tap } from 'rxjs';
+import { catchError, Observable, of, Subject, tap } from 'rxjs';
 import { Category, User, Record } from '../models/model';
 import { TokenStorageService } from './token-storage.service';
 
@@ -8,16 +8,20 @@ import { TokenStorageService } from './token-storage.service';
   providedIn: 'root'
 })
 export class UserService {
-
   readonly API_URL = 'http://localhost:4000/api/user/';
   httpOptions = {
     headers: new HttpHeaders({ 'authorization': `Bearer ${this.token.getToken()}` })
   };
 
+  private userSubject: Subject<any> = new Subject<any>();
+  user$ = this.userSubject.asObservable();
+
   constructor(private http: HttpClient, private token: TokenStorageService) { }
 
-  getDetails(): Observable<User> {
-    return this.http.get<User>(this.API_URL + 'details', this.httpOptions);
+  getUser(): void {
+    this.http.get<User>(this.API_URL + 'details', this.httpOptions).subscribe(data => {
+      this.userSubject.next(data);
+    });
   }
 
   addCategory(category: Category): Observable<Category> {

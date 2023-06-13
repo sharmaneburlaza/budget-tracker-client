@@ -1,1 +1,78 @@
-<p>categories works!</p>
+<div class="m-4">
+    <div class="d-flex">
+        <div class="input-group mx-2" style="max-width: 300px; max-height: 10px;">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="bi bi-search"></i></span>
+            </div>
+            <input type="text" 
+                class="form-control" 
+                placeholder="Search..."
+                [(ngModel)]="searchText"
+                (ngModelChange)="performSearch($event)">
+        </div>
+        <button type="button" class="btn btn-outline-success" (click)="showAddDialog()">
+            Add New Category
+        </button>
+    </div>
+    <div class="d-flex justify-content-start flex-wrap">
+        <ng-container *ngFor="let item of categories">
+            <div class="card col-md-4 m-2">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <p>{{item.type}}</p>
+                        </div>
+                        <div class="col">
+                            <p>{{item.name}}</p>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-dark border-0" (click)="showUpdateDialog(item)">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
+
+<p-dialog [(visible)]="showDialog"
+    [style]="{width: '450px'}"
+    [modal]="true"
+    [closable]="false"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <h4 *ngIf="isNew" class="text-center mb-4">Add New Category</h4>
+        <h4 *ngIf="!isNew" class="text-center mb-4">Update Category</h4>
+        <form #f="ngForm" name="form" (ngSubmit)="f.form.valid && onSubmit()" novalidate>
+            <div class="form-group my-2">
+                <select type="select"
+                    name="type"
+                    class="form-control form-select"
+                    [(ngModel)]="category.type"
+                    required
+                    #type="ngModel"
+                    >
+                    <option value="" disabled selected>Select Type</option>
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+            </div>
+            <div class="form-group my-2">
+                <input type="text"
+                    class="form-control"
+                    name="name"
+                    placeholder="Name"
+                    [(ngModel)]="category.name"
+                    required
+                    #name="ngModel">
+            </div>
+            <div class="form-group my-4 text-center">
+                <button type="submit" class="btn btn-outline-primary mx-1">Submit</button>
+                <button type="button" class="btn btn-outline-secondary mx-1" (click)="close()">Cancel</button>
+            </div>
+        </form>
+    </ng-template>
+</p-dialog>
+
