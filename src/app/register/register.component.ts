@@ -33,8 +33,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
     const { firstName, lastName, email, password, confirmPassword } = this.form?.value;
-    // console.log(firstName, lastName, email, password, confirmPassword)
-
+    
     if (!(firstName || lastName || email || password || confirmPassword)) {
       return;
     }
@@ -42,26 +41,27 @@ export class RegisterComponent implements OnInit {
       this.passwordMatched = false;
     } else {
       this.authService.emailExists(email).subscribe(data => {
-        this.passwordMatched = true;
-        this.register(data, {firstName, lastName, email, password});
+        if (!data) {
+          this.passwordMatched = true;
+          this.register({firstName, lastName, email, password});
+        } else {
+          this.errorMessage = 'Email already exists.';
+          this.isSignUpSuccessful = false;
+        }
       })
     }
   }
 
-  register(data: boolean, registerInfo: RegisterInfo): void {
-    if (data === false) {
-      this.authService.register(registerInfo).subscribe(data => {
-        if (data) {
-          this.isSignUpSuccessful = true;
-          this.router.navigate(['/login']);
-        } else {
-          // this.errorMessage = err.error.message
-          this.isSignUpSuccessful = false;
-        }
-      })
-    } else {
-      this.errorMessage = 'Email already exists.';
-      this.isSignUpSuccessful = false;
-    }
+  register(registerInfo: RegisterInfo): void {
+    this.authService.register(registerInfo).subscribe(data => {
+      console.log(data)
+      if (data) {
+        this.isSignUpSuccessful = true;
+        this.router.navigate(['/login']);
+      } else {
+        // this.errorMessage = err.error.message
+        this.isSignUpSuccessful = false;
+      }
+    })
   }
 }
