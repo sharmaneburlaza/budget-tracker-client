@@ -22,8 +22,8 @@ export class AppComponent {
   ngOnInit(): void {
     this.paths = [
       {
-        name: 'home',
-        icon: 'bi bi-house-fill'
+        name: 'dashboard',
+        icon: 'bi bi-clipboard2-pulse-fill'
       },
       {
         name: 'categories',
@@ -34,11 +34,7 @@ export class AppComponent {
         icon: 'bi bi-card-list'
       },
       {
-        name: 'dashboard',
-        icon: 'bi bi-clipboard2-pulse-fill'
-      },
-      {
-        name: 'account',
+        name: 'account-settings',
         icon: 'bi bi-person-circle'
       },
     ]

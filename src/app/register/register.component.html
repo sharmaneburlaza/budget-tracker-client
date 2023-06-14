@@ -7,35 +7,35 @@
                 <h3 class="text-center mx-2 mb-4">Let's create your secure account.</h3>
                 <form [formGroup]="form" (ngSubmit)="onSubmit()" #f="ngForm">
                     <div class="form-group my-2">
-                        <input class="form-control custom-input" 
+                        <input class="form-control custom-input font-sm" 
                             formControlName="firstName" 
                             type="text" 
                             placeholder="First Name"
                         >
                     </div>
                     <div class="form-group my-2">
-                        <input class="form-control custom-input" 
+                        <input class="form-control custom-input font-sm" 
                             formControlName="lastName" 
                             type="text" 
                             placeholder="Last Name"
                         >
                     </div>
                     <div class="form-group my-2">
-                        <input class="form-control custom-input" 
+                        <input class="form-control custom-input font-sm" 
                             formControlName="email" 
                             type="email" 
                             placeholder="Email"
                         >
                     </div>
                     <div class="form-group my-2">
-                        <input class="form-control custom-input" 
+                        <input class="form-control custom-input font-sm" 
                             formControlName="password" 
                             type="password" 
                             placeholder="Password"
                         >
                     </div>
                     <div class="form-group my-2">
-                        <input class="form-control custom-input" 
+                        <input class="form-control custom-input font-sm" 
                             formControlName="confirmPassword" 
                             type="password" 
                             placeholder="Confirm Password"
@@ -59,7 +59,7 @@
                     </div> -->
                 </form>
                 <div class="text-center">
-                    <p style="font-size: small;">Already have an account? <a routerLink="/login">Sign-in</a></p>
+                    <p class="font-sm">Already have an account? <a routerLink="/login">Sign-in</a></p>
                 </div>
             </div>
           </div>

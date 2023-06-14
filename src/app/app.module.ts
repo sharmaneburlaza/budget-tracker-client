@@ -16,6 +16,7 @@ import { RecordsComponent } from './records/records.component';
 
 import {DialogModule} from 'primeng/dialog';
 import { CardModule } from 'primeng/card';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CardModule } from 'primeng/card';
     ProfileComponent,
     CategoriesComponent,
     PageNotFoundComponent,
-    RecordsComponent
+    RecordsComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

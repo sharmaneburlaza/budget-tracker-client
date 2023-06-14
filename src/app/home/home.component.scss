@@ -1,0 +1,74 @@
+#container {
+    background-color: #c7e3f9;
+    height: 100vh;
+}
+
+h1 {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    background: linear-gradient(1300deg, #01b594 0%, #4e69e2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#login-btn {
+    // border-color: -webkit-linear-gradient(to left, #86fde8, #acb6e5);
+    // border-color: linear-gradient(to left, #86fde8, #acb6e5);
+}
+
+#register-btn {
+    // background: -webkit-linear-gradient(to right, #86fde8, #acb6e5);
+    // background: linear-gradient(to right, #86fde8, #acb6e5);
+}
+
+/* Styles for extra small devices (up to 576px) */
+@media (max-width: 576px) {
+    img {
+        height: 300px;
+        width: auto;
+        margin-top: 50px;
+    }
+
+    .buttons {
+        margin-top: 40px;
+    }
+}
+
+/* Styles for small devices (576px to 768px) */
+@media (min-width: 576px) and (max-width: 768px) {
+    img {
+        height: 300px;
+        width: auto;
+    }
+}
+
+/* Styles for medium devices (768px to 992px) */
+@media (min-width: 768px) and (max-width: 992px) {
+    img {
+        height: 300px;
+        width: auto;
+    }
+}
+
+/* Styles for large devices (992px to 1200px) */
+@media (min-width: 992px) and (max-width: 1200px) {
+    img {
+        height: 400px;
+        width: auto;
+    }
+
+    h1 {
+        font-size: 5vh;
+    }
+}
+
+/* Styles for extra large devices (1200px and above) */
+@media (min-width: 1200px) {
+    img {
+        height: 500px;
+        width: auto;
+    }
+
+    h1 {
+        font-size: 5vh;
+    }
+}
