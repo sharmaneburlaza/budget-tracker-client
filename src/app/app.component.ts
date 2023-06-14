@@ -34,7 +34,7 @@ export class AppComponent {
         icon: 'bi bi-card-list'
       },
       {
-        name: 'account-settings',
+        name: 'account',
         icon: 'bi bi-person-circle'
       },
     ]

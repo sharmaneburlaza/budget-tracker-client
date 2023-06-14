@@ -17,6 +17,9 @@ import { RecordsComponent } from './records/records.component';
 import {DialogModule} from 'primeng/dialog';
 import { CardModule } from 'primeng/card';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { BalanceTrendComponent } from './shared/charts/balance-trend/balance-trend.component';
+import { CategoryBreakdownComponent } from './shared/charts/category-breakdown/category-breakdown.component';
+import { IncomeVsExpenseComponent } from './shared/charts/income-vs-expense/income-vs-expense.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     CategoriesComponent,
     PageNotFoundComponent,
     RecordsComponent,
-    DashboardComponent
+    DashboardComponent,
+    BalanceTrendComponent,
+    CategoryBreakdownComponent,
+    IncomeVsExpenseComponent
   ],
   imports: [
     BrowserModule,

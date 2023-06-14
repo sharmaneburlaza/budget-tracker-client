@@ -47,14 +47,14 @@ export class LoginComponent implements OnInit {
 
   login(loginInfo: LoginInfo): void {
     this.authService.login(loginInfo).subscribe(
-      data => {
+      async data => {
         if (!data.error) {
           console.log(data)
           this.tokenStorage.saveToken(data.accessToken);
           this.tokenStorage.saveUser(data);
           this.isLoginFailed = false;
           this.isLoggedIn = true;
-          this.router.navigate(['/records']);
+          await this.router.navigate(['/records']);
           window.location.reload();
         } else {
           this.isLoginFailed = true;

@@ -19,7 +19,7 @@
             <div class="card col-md-6 m-2" [ngClass]="[item.categoryType === 'income' ? 'green-card' : 'red-card' ]">
                 <div class="card-body">
                     <p>{{ item.createdOn | date: 'medium' }}</p>
-                    <p>Transaction amount: {{ item.amount | number: '.2' }} </p>
+                    <p>Transaction amount:  &#8369;{{ item.amount | number: '.2' }} </p>
                     <div class="row">
                         <div class="col">
                             <p> {{ item.categoryType }} </p>
@@ -39,7 +39,7 @@
                             </button>
                         </div>
                     </div>
-                    <p>Ending balance: {{ item.balance | number: '.2' }} </p>
+                    <p>Ending balance: &#8369;{{ item.balance | number: '.2' }} </p>
                 </div>
             </div>
         </ng-container>
@@ -47,7 +47,7 @@
 </div>
 
 <p-dialog [(visible)]="showDialog"
-    [style]="{width: '450px'}"
+    [style]="{width: '450px', backgroundColor: '#a1c4a1', padding: '20px'}"
     [modal]="true"
     [closable]="false"
     styleClass="p-fluid">
