@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from './shared/models/model';
 import { AuthService } from './shared/services/auth.service';
 import { TokenStorageService } from './shared/services/token-storage.service';
+import { UserService } from './shared/services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -12,11 +14,13 @@ export class AppComponent {
   title = 'budget-tracker-client';
   isLoggedIn = this.authService.isLoggedIn();
   paths: any = [];
+  user!: User;
 
   constructor(
     private authService: AuthService, 
     private tokenStorageService: TokenStorageService,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -24,6 +28,10 @@ export class AppComponent {
       {
         name: 'dashboard',
         icon: 'bi bi-clipboard2-pulse-fill'
+      },
+      {
+        name: 'charts',
+        icon: 'bi bi-pie-chart-fill'
       },
       {
         name: 'categories',
@@ -38,6 +46,11 @@ export class AppComponent {
         icon: 'bi bi-person-circle'
       },
     ]
+
+    this.userService.getUser();
+    this.userService.user$.subscribe(data => {
+      this.user = data;
+    })
   }
 
   async logout(): Promise<void> {

@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { Record } from '../../models/model';
-import { CategoryScale, Chart, LinearScale, LineController, LineElement, PointElement } from 'chart.js';
+import { Chart, registerables } from 'chart.js';
 import * as moment from 'moment';
 import { UserService } from '../../services/user.service';
 
-Chart.register(LineController, CategoryScale, LinearScale, PointElement, LineElement);
+Chart.register(...registerables);
 
 @Component({
   selector: 'app-balance-trend',
@@ -44,8 +44,6 @@ export class BalanceTrendComponent {
 
   drawChart(): void {
     const canvas = <HTMLCanvasElement> document.getElementById('lineChart');
-    console.log('trendbalance', this.trendBalance)
-    console.log('trenddates', this.trendDates)
     if (canvas) {
       this.chart = new Chart(canvas, {
         type: 'line',

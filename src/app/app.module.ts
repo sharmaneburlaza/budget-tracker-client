@@ -14,12 +14,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RecordsComponent } from './records/records.component';
 
-import {DialogModule} from 'primeng/dialog';
+import { DialogModule } from 'primeng/dialog';
 import { CardModule } from 'primeng/card';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BalanceTrendComponent } from './shared/charts/balance-trend/balance-trend.component';
 import { CategoryBreakdownComponent } from './shared/charts/category-breakdown/category-breakdown.component';
 import { IncomeVsExpenseComponent } from './shared/charts/income-vs-expense/income-vs-expense.component';
+import { ChartsComponent } from './charts/charts.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { IncomeVsExpenseComponent } from './shared/charts/income-vs-expense/inco
     DashboardComponent,
     BalanceTrendComponent,
     CategoryBreakdownComponent,
-    IncomeVsExpenseComponent
+    IncomeVsExpenseComponent,
+    ChartsComponent
   ],
   imports: [
     BrowserModule,

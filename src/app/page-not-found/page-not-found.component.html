@@ -5,7 +5,12 @@
         <div>
             <h3>Looks like you're lost</h3>
             <p>the page you are looking for is not available!</p>
-            <a routerLink="/home" class="link_404">Go to Home</a>
+            <ng-container *ngIf="isLoggedIn">
+                <a routerLink="/dashboard" class="link_404">Go to Dashboard</a>
+            </ng-container>
+            <ng-container *ngIf="!isLoggedIn">
+                <a routerLink="/dashboard" class="link_404">Go to Home</a>
+            </ng-container>
         </div>
     </div>
 </div>

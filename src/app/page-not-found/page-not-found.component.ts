@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-page-not-found',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./page-not-found.component.scss']
 })
 export class PageNotFoundComponent {
+  isLoggedIn = this.authService.isLoggedIn();
 
+  constructor(private authService: AuthService) { }
 }
