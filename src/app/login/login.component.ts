@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
           this.tokenStorage.saveUser(data);
           this.isLoginFailed = false;
           this.isLoggedIn = true;
-          await this.router.navigate(['/records']);
+          await this.router.navigate(['/dashboard']);
           window.location.reload();
         } else {
           this.isLoginFailed = true;
