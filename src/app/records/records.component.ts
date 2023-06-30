@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DialogService } from 'primeng/dynamicdialog';
-import { CATEGORY_EXPENSES } from '../shared/constants/categories.const';
+import { CATEGORY_EXPENSES, CATEGORY_INCOME } from '../shared/constants/categories.const';
 import { Category, CategoryType, Record, User } from '../shared/models/model';
 import { UserService } from '../shared/services/user.service';
 
@@ -17,12 +18,14 @@ export class RecordsComponent {
   recordsOriginalCopy: Record[] = [];
   categories: Category[] = [];
   selectedCategories: Category[] = [];
-  record!: Record;
+  recordForm!: FormGroup<any>;
   searchText: string = '';
+  dateNow = new Date();
 
   constructor(
     private userService: UserService,
     public dialogService: DialogService,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -36,19 +39,20 @@ export class RecordsComponent {
   }
 
   initRecord(): void {
-    this.record = {
-      categoryName: '',
-      categoryType: '',
-      description: '',
-      amount: 0,
-    }
+    this.recordForm = this.fb.group({
+      categoryName: ['', [Validators.required]],
+      categoryType: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      amount: [0, [Validators.required]],
+      transactionDate: [new Date(), Validators.required]
+    })
   }
 
   onCategoryTypeChange(): void {
-    let {categoryType: type} = this.record;
+    let {categoryType: type} = this.recordForm.value;
     type = type.toLowerCase();
 
-    this.categories.push(...CATEGORY_EXPENSES);
+    this.categories.push(...CATEGORY_INCOME, ...CATEGORY_EXPENSES);
 
     if (type === 'income') {
       this.selectedCategories = this.categories.filter(c => c.type.toLowerCase() === CategoryType.Income);
@@ -58,26 +62,27 @@ export class RecordsComponent {
   }
 
   onSubmit(): void {
-    let { categoryName, categoryType, description, amount } = this.record;
+    let { categoryName, categoryType, description, amount, transactionDate } = this.recordForm.value;
     if (!(categoryName || categoryName || description || amount)) {
       return;
     }
     description = description.trim();
     const categoryId = this.getCategoryId(categoryName, categoryType);
-    console.log(categoryId)
+    const date = new Date(transactionDate);
     const record = {
       categoryId,
       categoryName,
       categoryType,
       description,
-      amount
+      amount,
+      transactionDate: date
     }
     return this.isNew ? this.addNewRecord(record) : this.updateRecord(record);
   }
 
   getCategoryId(name: string, type: string): string | undefined {
-    console.log(this.categories)
-    return this.categories.find(c => c.name === name && c.type.toLowerCase() === type.toLowerCase())?._id;
+    const category = this.categories.find(c => c.name === name && c.type.toLowerCase() === type.toLowerCase());
+    return category?.defined_id ? `${category.defined_id}` : category?._id;
   }
 
   getBalance(records: Record[]): Record[] {
@@ -93,15 +98,16 @@ export class RecordsComponent {
         return (accumulator + currentValue)
       }, 0)
 
-      const {categoryName, categoryType, categoryId, createdOn, amount, description} = r;
+      const {categoryName, categoryType, categoryId, amount, description, transactionDate} = r;
 
       return {
         categoryName,
         categoryType,
-        categoryId, createdOn,
+        categoryId, 
         amount,
         balance,
-        description
+        description,
+        transactionDate
       }
     })
   }
@@ -129,7 +135,7 @@ export class RecordsComponent {
   showUpdateDialog(item: Record): void {
     this.showDialog = true;
     this.isNew = false;
-    this.record = {...item};
+    this.recordForm.setValue({...item});
   }
 
   deleteRecord(item: Record): void {

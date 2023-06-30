@@ -49,7 +49,6 @@ export class LoginComponent implements OnInit {
     this.authService.login(loginInfo).subscribe(
       async data => {
         if (!data.error) {
-          console.log(data)
           this.tokenStorage.saveToken(data.accessToken);
           this.tokenStorage.saveUser(data);
           this.isLoginFailed = false;

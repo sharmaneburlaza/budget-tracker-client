@@ -118,7 +118,7 @@ export class IncomeVsExpenseComponent {
     return this.months.map(month => {
       let income = 0;
       this.incomeRecords.forEach(record => {
-        const recordMonth = (moment(record.createdOn).format('MMMM')).substring(0, 3);
+        const recordMonth = (moment(record.transactionDate).format('MMMM')).substring(0, 3);
         if (recordMonth === month) {
           income += record.amount;
         }
@@ -133,7 +133,7 @@ export class IncomeVsExpenseComponent {
     return this.months.map(month => {
       let expenses = 0;
       this.expenseRecords.forEach(record => {
-        const recordMonth = (moment(record.createdOn).format('MMMM')).substring(0, 3);
+        const recordMonth = (moment(record.transactionDate).format('MMMM')).substring(0, 3);
         if (recordMonth === month) {
           expenses += record.amount;
         }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Category, Record, User } from '../shared/models/model';
 import { UserService } from '../shared/services/user.service';
 import { DialogService } from 'primeng/dynamicdialog';
-import { CATEGORY_EXPENSES } from '../shared/constants/categories.const';
+import { CATEGORY_EXPENSES, CATEGORY_INCOME } from '../shared/constants/categories.const';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { CATEGORY_EXPENSES } from '../shared/constants/categories.const';
   providers: [DialogService]
 })
 export class CategoriesComponent implements OnInit {
-  categories: Category[] = CATEGORY_EXPENSES;
+  categories: Category[] = [...CATEGORY_INCOME, ...CATEGORY_EXPENSES];
   categoriesCopy: Category[] = [];
   records: Record[] = [];
   showDialog: boolean = false;
@@ -54,7 +54,6 @@ export class CategoriesComponent implements OnInit {
   }
 
   updateCategory(category: Category): void {
-    console.log(category)
     this.updateCategoryInRecords(category);
     this.userService.updateCategory(category).subscribe(data => {
       this.showDialog = false;
@@ -65,7 +64,7 @@ export class CategoriesComponent implements OnInit {
   updateCategoryInRecords(category: Category): void {
     const recordsToUpdate: Record[] = this.records.filter(r => r.categoryId === category._id)
     const records = recordsToUpdate.map(record => {
-      const {categoryId, description, amount, balance, createdOn, isDeleted} = record;
+      const {categoryId, description, amount, balance, isDeleted, transactionDate} = record;
       return {
         categoryName: category.name,
         categoryType: category.type,
@@ -73,8 +72,8 @@ export class CategoriesComponent implements OnInit {
         description,
         amount,
         balance,
-        createdOn,
-        isDeleted
+        isDeleted,
+        transactionDate
       }
     })
     

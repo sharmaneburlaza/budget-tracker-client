@@ -60,6 +60,7 @@ export class CategoryBreakdownComponent {
 
   drawExpensePie(): void {
     const canvas = <HTMLCanvasElement> document.getElementById('expensePieChart');
+
     const names: string[] = this.getNamesAndAmounts(this.expenseRecords).map(na => na.name);
     const amounts: number[] = this.getNamesAndAmounts(this.expenseRecords).map(na => na.amount);
     const bgColors = this.expenseRecords.map(() => `#${this.colorRandomizer()}`);
@@ -68,15 +69,15 @@ export class CategoryBreakdownComponent {
   }
 
   getIncomeAndExpense(start: Date, end: Date): void {
-    const dateStart = moment(start).format('L');
-    const dateEnd = moment(end).format('L');
+    // const dateStart = new Date(start);
+    // const dateEnd = new Date(end);
     let incomeList: Record[] = [];
     let expenseList: Record[] = [];
 
     this.records.forEach(record => {
-      const recordDate = moment(record.createdOn).format('L');
+      const recordDate = new Date(record.transactionDate);
       const type = record.categoryType.toLowerCase();
-      if (recordDate >= dateStart && recordDate <= dateEnd) {
+      if (recordDate >= start && recordDate <= end) {
         if (type === 'income') {
           incomeList.push(record);
         } else {

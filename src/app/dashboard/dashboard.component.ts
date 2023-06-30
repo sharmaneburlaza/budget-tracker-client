@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UserService } from '../shared/services/user.service';
 import { Category, Record } from '../shared/models/model';
 import * as moment from 'moment';
+import { CATEGORY_EXPENSES } from '../shared/constants/categories.const';
 
 
 interface CurrentMonth {
@@ -25,6 +26,7 @@ export class DashboardComponent {
   currentMonth: CurrentMonth | undefined;
   expectedIncome: number = 30000;
   expectedExpense: number = 2000;
+  topSpending: any = [];
 
   constructor(
     private userService: UserService
@@ -34,6 +36,7 @@ export class DashboardComponent {
     await this.getUser();
     this.getBalance();
     this.getCurrentMonth();
+    this.getTopSpending();
   }
 
   getUser(): Promise<void> {
@@ -50,12 +53,8 @@ export class DashboardComponent {
   }
 
   getCurrentMonth(): void {
-    const currentMonthIncome = this.records
-      .filter(r => moment(r.createdOn).get('month') === this.getMonth('number')
-        && r.categoryType.toLowerCase() === 'income').map(r => r.amount);
-    const currentMonthExpense = this.records
-      .filter(r => moment(r.createdOn).get('month') == this.getMonth('number') 
-        && r.categoryType.toLowerCase() === 'expense').map(r => r.amount);
+    const currentMonthIncome = this.getCurrentMonthRecord().filter(r => r.categoryType.toLowerCase() === 'income').map(r => r.amount);
+    const currentMonthExpense = this.getCurrentMonthRecord().filter(r => r.categoryType.toLowerCase() === 'expense').map(r => r.amount);
 
     const incomeSum = this.getSum(currentMonthIncome);
     const expenseSum = this.getSum(currentMonthExpense);
@@ -68,8 +67,10 @@ export class DashboardComponent {
       incomeVsExpected: `${(incomeSum / this.expectedIncome) * 100}%`,
       expenseVsExpected: `${(expenseSum / this.expectedExpense) * 100}%`
     }
+  }
 
-    console.log(this.currentMonth)
+  getCurrentMonthRecord(): Record[] {
+    return this.records.filter(r => moment(r.transactionDate).get('month') === this.getMonth('number'))
   }
 
   getSum(arr: number[]): number {
@@ -90,6 +91,26 @@ export class DashboardComponent {
       }
     })
     this.balance = this.getSum(amounts);
+  }
+
+  getTopSpending(): void {
+    const currentExpenses = this.getCurrentMonthRecord().filter(r => r.categoryType.toLowerCase() === 'expense')
+    const groups = currentExpenses.reduce(function (r, a) {
+      r[a.categoryName] = r[a.categoryName] || [];
+      r[a.categoryName].push(a);
+      return r;
+    }, Object.create(null));
+    const groupSum = Object.entries(groups).map((g: any) => {
+      const amounts = g[1].map((item: Record) => item.amount);
+      const icon = CATEGORY_EXPENSES.find(v => v.name === g[0])?.icon;
+      return {
+        name: g[0],
+        sum: this.getSum(amounts),
+        icon: icon
+      }
+    })
+    this.topSpending = groupSum ? groupSum.slice(0, 4) : [];
+    console.log(this.topSpending)
   }
 
 }

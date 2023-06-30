@@ -34,7 +34,11 @@ export class BalanceTrendComponent {
       this.userService.getUser();
       this.userService.user$.subscribe(data => {
         const records: Record[] = data.records;
-        this.records = records.filter(r => r.isDeleted === false);
+        this.records = records.filter(r => r.isDeleted === false).sort((a, b) => {
+          const c: any = (new Date(a.transactionDate)).getTime();
+          const d: any = (new Date(b.transactionDate)).getTime();
+          return c - d;
+        });
         resolve();
       }, error => {
         reject(error);
@@ -81,7 +85,7 @@ export class BalanceTrendComponent {
     let runningBalance = 0;
 
     this.records.forEach(record => {
-      const recordDate = moment(record.createdOn).format('YYYY-MM-DD');
+      const recordDate = moment(record.transactionDate).format('YYYY-MM-DD');
       const type = record.categoryType.toLocaleLowerCase();
       if (!recordDate) {
         return;

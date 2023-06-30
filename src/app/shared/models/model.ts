@@ -16,7 +16,8 @@ export interface User extends RegisterInfo {
 }
 
 export interface Category {
-    _id?: string
+    _id?: string,
+    defined_id?: number,
     name: string,
     type: string,
     icon?: string,
@@ -29,9 +30,11 @@ export interface Record {
     categoryId?: string
     description: string,
     amount: number,
+    transactionDate: Date | string,
     balance?: number,
     createdOn?: Date | string,
-    isDeleted?: boolean
+    isDeleted?: boolean,
+    icon?: string
 }
 
 export enum CategoryType {

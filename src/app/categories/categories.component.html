@@ -16,7 +16,7 @@
     </div>
     <div class="d-flex justify-content-start flex-wrap mt-4 overflow-auto" style="max-height: 85vh;">
         <ng-container *ngFor="let item of categories">
-            <div class="card col-md-2 m-2" [ngClass]="[item.type === 'Income' ? 'green-card' : 'red-card' ]">
+            <div class="card col-md-2 m-2" [ngClass]="[item.type === 'income' ? 'green-card' : 'red-card' ]">
                 <div class="card-body text-center">
                     <div style="height: 10vh;">
                         <i [class]="item.icon" style="font-size: 6vh;"></i>
@@ -50,8 +50,8 @@
                     #type="ngModel"
                     >
                     <option value="" disabled selected>Select Type</option>
-                    <option value="Income">Income</option>
-                    <option value="Expense">Expense</option>
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
                 </select>
             </div>
             <div class="form-group my-2">

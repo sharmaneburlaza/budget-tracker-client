@@ -3,13 +3,13 @@
       <div class="col-2 sidebar" *ngIf="isLoggedIn" style="padding: 0;">
         <div class="text-center" style="margin: 3vh 0;">
           <img src="../assets/images/avatar.png" alt="" style="height: 15vh;">
-          <h4> {{ user?.firstName }} </h4>
+          <h6> {{ user?.firstName }} {{ user?.lastName }}</h6>
         </div>
         <div class="list-group">
           <div style="height: 68vh;">
-            <ng-container  *ngFor="let path of paths">
-              <a class="list-group-item list-group-item-action" [routerLink]="path.name" [routerLinkActive]="['active']">
-                <i class={{path.icon}}></i> {{ path.name }} 
+            <ng-container  *ngFor="let item of paths">
+              <a class="list-group-item list-group-item-action" [routerLink]="item.path" [routerLinkActive]="['active']">
+                <i class={{item.icon}}></i> <label for="" style="padding-left: 10px;"> {{ item.name }} </label>
               </a>
           </ng-container>
           </div>
