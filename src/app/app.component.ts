@@ -14,7 +14,7 @@ export class AppComponent {
   title = 'budget-tracker-client';
   isLoggedIn = this.authService.isLoggedIn();
   paths: any = [];
-  user!: User;
+  user: User | undefined;
 
   constructor(
     private authService: AuthService, 

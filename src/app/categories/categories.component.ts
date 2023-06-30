@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Category, Record, User } from '../shared/models/model';
 import { UserService } from '../shared/services/user.service';
 import { DialogService } from 'primeng/dynamicdialog';
+import { CATEGORY_EXPENSES } from '../shared/constants/categories.const';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { DialogService } from 'primeng/dynamicdialog';
   providers: [DialogService]
 })
 export class CategoriesComponent implements OnInit {
-  categories: Category[] = [];
+  categories: Category[] = CATEGORY_EXPENSES;
   categoriesCopy: Category[] = [];
   records: Record[] = [];
   showDialog: boolean = false;
@@ -28,8 +29,8 @@ export class CategoriesComponent implements OnInit {
     this.userService.getUser();
     this.userService.user$.subscribe(data => {
       this.records = data.records;
-      this.categoriesCopy = (data.categories).reverse();
-      this.categories = data.categories;
+      this.categoriesCopy.push(...data.categories);
+      this.categories.push(...data.categories);
     })
   }
 

@@ -1,17 +1,54 @@
 <div class="m-4 text-center">
-    <div class="card m-5 p-5">
-        <h2>Current Balance: 0.00</h2>
+    <div class="card p-4">
+        <h2> Current Balance: &#8369; {{ balance | number: '.2' }} </h2>
     </div>
-    <div class="overflow-auto" style="max-height: 60vh;">
-        <div class="card m-2 p-2">
-            <h4>[Current Month] Savings</h4>
-            <h1>0.00</h1>
+    <div class="overflow-auto" style="max-height: 80vh;">
+        <div class="card mt-2 p-2">
+            <h4>{{ currentMonth?.name }} Savings: &#8369; {{ currentMonth?.savings | number: '.2' }}</h4>
+            <div class="row">
+                <div class="col-3">
+                    <label for="">Income vs Expected</label>
+                </div>
+                <div class="col-9">
+                    <div class="progress my-1">
+                        <div class="progress-bar" role="progressbar" 
+                            [ngStyle]="{'width': currentMonth?.incomeVsExpected}" 
+                            aria-valuemin="0" 
+                            aria-valuemax="100">
+                            &#8369; {{ currentMonth?.income | number: '.2' }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <label for="">Expense vs Expected</label>
+                </div>
+                <div class="col-9">
+                    <div class="progress my-1">
+                        <div class="progress-bar" role="progressbar" 
+                            [ngStyle]="{'width': currentMonth?.expenseVsExpected}"  
+                            aria-valuemin="0" 
+                            aria-valuemax="100">
+                            &#8369; {{ currentMonth?.expense | number: '.2' }}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="card m-2 p-2">
+        <div class="card my-2 p-2">
             <h4>Top Spending</h4>
-    
+            <div class="row">
+                <div class="col-3">
+                    <div class="card">
+
+                    </div>
+                </div>
+            </div>
         </div>
-        <app-balance-trend></app-balance-trend>
+        <div class="card">
+            <app-balance-trend></app-balance-trend>
+        </div>
     </div>
 
 </div>

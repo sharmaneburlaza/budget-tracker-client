@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
+import { CATEGORY_EXPENSES } from '../shared/constants/categories.const';
 import { Category, CategoryType, Record, User } from '../shared/models/model';
 import { UserService } from '../shared/services/user.service';
 
@@ -46,6 +47,8 @@ export class RecordsComponent {
   onCategoryTypeChange(): void {
     let {categoryType: type} = this.record;
     type = type.toLowerCase();
+
+    this.categories.push(...CATEGORY_EXPENSES);
 
     if (type === 'income') {
       this.selectedCategories = this.categories.filter(c => c.type.toLowerCase() === CategoryType.Income);
