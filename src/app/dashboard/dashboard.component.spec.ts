@@ -1,4 +1,7 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BalanceTrendComponent } from '../shared/charts/balance-trend/balance-trend.component';
+import { UserService } from '../shared/services/user.service';
 
 import { DashboardComponent } from './dashboard.component';
 
@@ -8,7 +11,16 @@ describe('DashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DashboardComponent ]
+      declarations: [ 
+        DashboardComponent,
+        BalanceTrendComponent
+       ],
+      imports: [
+        HttpClientTestingModule
+      ],
+      providers: [
+        UserService
+      ]
     })
     .compileComponents();
 

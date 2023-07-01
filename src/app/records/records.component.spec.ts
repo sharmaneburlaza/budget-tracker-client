@@ -1,4 +1,9 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { DialogModule } from 'primeng/dialog';
+import { DialogService } from 'primeng/dynamicdialog';
+import { UserService } from '../shared/services/user.service';
 
 import { RecordsComponent } from './records.component';
 
@@ -8,7 +13,16 @@ describe('RecordsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RecordsComponent ]
+      declarations: [ RecordsComponent ],
+      imports: [
+        HttpClientTestingModule,
+        DialogModule,
+        FormsModule
+      ],
+      providers: [
+        UserService,
+        DialogService
+      ]
     })
     .compileComponents();
 

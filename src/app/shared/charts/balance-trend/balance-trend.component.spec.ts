@@ -1,4 +1,6 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { UserService } from '../../services/user.service';
 
 import { BalanceTrendComponent } from './balance-trend.component';
 
@@ -8,7 +10,13 @@ describe('BalanceTrendComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BalanceTrendComponent ]
+      declarations: [ BalanceTrendComponent ],
+      imports: [
+        HttpClientTestingModule
+      ],
+      providers: [
+        UserService
+      ]
     })
     .compileComponents();
 

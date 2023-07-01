@@ -1,4 +1,6 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AuthService } from '../shared/services/auth.service';
 
 import { PageNotFoundComponent } from './page-not-found.component';
 
@@ -8,7 +10,13 @@ describe('PageNotFoundComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PageNotFoundComponent ]
+      declarations: [ PageNotFoundComponent ],
+      imports: [
+        HttpClientTestingModule
+      ],
+      providers: [
+        AuthService
+      ]
     })
     .compileComponents();
 
