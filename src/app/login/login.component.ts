@@ -12,9 +12,8 @@ import { TokenStorageService } from '../shared/services/token-storage.service';
 })
 export class LoginComponent implements OnInit {
   form!: FormGroup<any>;
-  isLoggedIn = false;
-  isLoginFailed = false;
-  errorMessage = '';
+  isLoginSuccessful: boolean | undefined;
+  errorMessage: string | undefined;
 
   constructor(
     private authService: AuthService,
@@ -35,12 +34,13 @@ export class LoginComponent implements OnInit {
     if (!(email || password)) {
       return;
     }
-    this.authService.emailExists(email).subscribe(data => {
-      if (data) {
+    this.authService.emailExists(email).subscribe(result => {
+      if (result) {
         this.login({email, password});
+        this.isLoginSuccessful = true;
       } else {
-        this.errorMessage = 'Email does not exists.';
-        this.isLoginFailed = true;
+        this.errorMessage = 'Email does not exist.';
+        this.isLoginSuccessful = false;
       }
     })
   }
@@ -51,12 +51,11 @@ export class LoginComponent implements OnInit {
         if (!data.error) {
           this.tokenStorage.saveToken(data.accessToken);
           this.tokenStorage.saveUser(data);
-          this.isLoginFailed = false;
-          this.isLoggedIn = true;
+          this.isLoginSuccessful = true;
           await this.router.navigate(['/dashboard']);
           window.location.reload();
         } else {
-          this.isLoginFailed = true;
+          this.isLoginSuccessful = false;
           this.errorMessage = data.error === 'incorrect-password' ? 'Incorrect password!' : data.error;
         }
       }
