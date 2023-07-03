@@ -3,6 +3,7 @@ import { UserService } from '../shared/services/user.service';
 import { Category, Record } from '../shared/models/model';
 import * as moment from 'moment';
 import { CATEGORY_EXPENSES } from '../shared/constants/categories.const';
+import { Subject, takeUntil } from 'rxjs';
 
 
 interface CurrentMonth {
@@ -20,6 +21,7 @@ interface CurrentMonth {
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
+  private unsubscribe$ = new Subject<void>();
   records: Record[] = [];
   categories: Category[] = [];
   balance: number = 0;
@@ -42,7 +44,7 @@ export class DashboardComponent {
   getUser(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       this.userService.getUser();
-      this.userService.user$.subscribe(data => {
+      this.userService.user$.pipe(takeUntil(this.unsubscribe$)).subscribe(data => {
         const records: Record[] = data.records;
         this.records = records.filter(r => r.isDeleted === false);
         resolve();
@@ -111,6 +113,12 @@ export class DashboardComponent {
     })
     this.topSpending = groupSum ? groupSum.slice(0, 4) : [];
     console.log(this.topSpending)
+  }
+
+  ngOnDestroy(): void {
+    // Emit a value to trigger the unsubscribe in takeUntil
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
 }

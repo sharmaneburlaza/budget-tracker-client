@@ -64,7 +64,7 @@ describe('LoginComponent', () => {
     expect(component.isLoginSuccessful).toBe(false);
   });
 
-  it('should fo nothing if both email and password are empty', () => {
+  it('should do nothing if both email and password are empty', () => {
     spyOn(authService, 'emailExists');
     component.form = { value: { email: '', password: '' } as LoginInfo } as any;
     spyOn(component, 'login');

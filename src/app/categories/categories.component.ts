@@ -3,6 +3,7 @@ import { Category, Record, User } from '../shared/models/model';
 import { UserService } from '../shared/services/user.service';
 import { DialogService } from 'primeng/dynamicdialog';
 import { CATEGORY_EXPENSES, CATEGORY_INCOME } from '../shared/constants/categories.const';
+import { Subject, takeUntil } from 'rxjs';
 
 
 @Component({
@@ -12,6 +13,7 @@ import { CATEGORY_EXPENSES, CATEGORY_INCOME } from '../shared/constants/categori
   providers: [DialogService]
 })
 export class CategoriesComponent implements OnInit {
+  private unsubscribe$ = new Subject<void>();
   categories: Category[] = [...CATEGORY_INCOME, ...CATEGORY_EXPENSES];
   categoriesCopy: Category[] = [];
   records: Record[] = [];
@@ -27,7 +29,7 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getUser();
-    this.userService.user$.subscribe(data => {
+    this.userService.user$.pipe(takeUntil(this.unsubscribe$)).subscribe(data => {
       this.records = data.records;
       this.categoriesCopy.push(...data.categories);
       this.categories.push(...data.categories);
@@ -111,6 +113,12 @@ export class CategoriesComponent implements OnInit {
 
   close(): void {
     this.showDialog = false;
+  }
+
+  ngOnDestroy(): void {
+    // Emit a value to trigger the unsubscribe in takeUntil
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
 }

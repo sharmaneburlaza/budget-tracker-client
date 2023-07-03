@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DialogService } from 'primeng/dynamicdialog';
+import { Subject, takeUntil } from 'rxjs';
 import { CATEGORY_EXPENSES, CATEGORY_INCOME } from '../shared/constants/categories.const';
 import { Category, CategoryType, Record, User } from '../shared/models/model';
 import { UserService } from '../shared/services/user.service';
@@ -12,6 +13,7 @@ import { UserService } from '../shared/services/user.service';
   providers: [DialogService]
 })
 export class RecordsComponent {
+  private unsubscribe$ = new Subject<void>();
   showDialog: boolean = false;
   isNew = false;
   records: Record[] = [];
@@ -30,7 +32,7 @@ export class RecordsComponent {
 
   ngOnInit(): void {
     this.userService.getUser();
-    this.userService.user$.subscribe(data => {
+    this.userService.user$.pipe(takeUntil(this.unsubscribe$)).subscribe(data => {
       const records: Record[] = data.records;
       this.recordsOriginalCopy = records.filter(r => r.isDeleted === false);
       this.records = this.getBalance(records).reverse();
@@ -148,6 +150,12 @@ export class RecordsComponent {
 
   close(): void {
     this.showDialog = false;
+  }
+
+  ngOnDestroy(): void {
+    // Emit a value to trigger the unsubscribe in takeUntil
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
 }

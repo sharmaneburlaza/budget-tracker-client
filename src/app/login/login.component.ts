@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { first } from 'rxjs';
 import { LoginInfo } from '../shared/models/model';
 import { AuthService } from '../shared/services/auth.service';
 import { TokenStorageService } from '../shared/services/token-storage.service';
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
     if (!(email || password)) {
       return;
     }
-    this.authService.emailExists(email).subscribe(result => {
+    this.authService.emailExists(email).pipe(first()).subscribe(result => {
       if (result) {
         this.login({email, password});
         this.isLoginSuccessful = true;
@@ -46,7 +47,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(loginInfo: LoginInfo): void {
-    this.authService.login(loginInfo).subscribe(
+    this.authService.login(loginInfo).pipe(first()).subscribe(
       async data => {
         if (!data.error) {
           this.tokenStorage.saveToken(data.accessToken);

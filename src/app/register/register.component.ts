@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { first } from 'rxjs';
 import { RegisterInfo } from '../shared/models/model';
 import { AuthService } from '../shared/services/auth.service';
 
@@ -40,7 +41,7 @@ export class RegisterComponent implements OnInit {
     if (password !== confirmPassword) {
       this.passwordMatched = false;
     } else {
-      this.authService.emailExists(email).subscribe(data => {
+      this.authService.emailExists(email).pipe(first()).subscribe(data => {
         if (!data) {
           this.passwordMatched = true;
           this.register({firstName, lastName, email, password});
@@ -53,7 +54,7 @@ export class RegisterComponent implements OnInit {
   }
 
   register(registerInfo: RegisterInfo): void {
-    this.authService.register(registerInfo).subscribe(data => {
+    this.authService.register(registerInfo).pipe(first()).subscribe(data => {
       if (data) {
         this.isSignUpSuccessful = true;
         this.router.navigate(['/login']);
