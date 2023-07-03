@@ -10,11 +10,24 @@ import { ProfileComponent } from './profile/profile.component';
 import { RecordsComponent } from './records/records.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { AuthenticatedGuard } from './shared/guards/authenticated.guard';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
+  { 
+    path: 'home', 
+    component: HomeComponent,
+    canActivate: [AuthenticatedGuard]
+  },
+  { 
+    path: 'register', 
+    component: RegisterComponent,
+    canActivate: [AuthenticatedGuard] 
+  },
+  { 
+    path: 'login', 
+    component: LoginComponent,
+    canActivate: [AuthenticatedGuard] 
+  },
   { 
     path: 'dashboard', 
     component: DashboardComponent,
