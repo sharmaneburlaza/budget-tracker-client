@@ -40,9 +40,12 @@
                             type="password" 
                             placeholder="Confirm Password"
                         >
+                        <p class="font-xs my-1">
+                            **Password should be at least 6 characters length and contains at least 1 uppercase, 1 lowercase and a number.
+                        </p>
                     </div>
                     <div class="alert-danger"  *ngIf="f.submitted && !passwordMatched">
-                        <small class="p-invalid">
+                        <small class="p-invalid" style="color: red;">
                             *Password does not match!
                         </small>
                     </div>
