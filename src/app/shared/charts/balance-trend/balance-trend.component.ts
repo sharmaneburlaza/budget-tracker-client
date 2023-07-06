@@ -60,7 +60,7 @@ export class BalanceTrendComponent {
               fill: true,
               tension: 0.5,
               borderColor: 'black',
-              backgroundColor: 'rgba(255,0,0,0.3)'
+              backgroundColor: `hsl(228, 100%, 84%)`
             }
           ]
         },
