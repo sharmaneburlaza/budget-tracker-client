@@ -1,5 +1,47 @@
-:host ::ng-deep {
-    // .p-card {
-    //     border-color: red !important;
-    // }
+.container {
+    padding: 20px;
+
+    .heading {
+        display: flex;
+    }
+
+    .contents {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 10px 10px;
+        height: 85vh;
+        overflow: auto;
+
+        .card {
+            width: 150px;
+            height: 150px;
+            margin: 5px;
+
+            p.name {
+                margin-top: 5px;
+                height: 40px;
+                font-size: 14px;
+            }
+
+            .type {
+                height: 40px;
+
+                i {
+                    font-size: 30px;
+                    height: 40px;
+                }
+            }
+
+            .edit {
+                display: flex;
+                justify-content: flex-end;
+
+                button {
+                    border: none;
+                } 
+            }
+        }
+    }
 }

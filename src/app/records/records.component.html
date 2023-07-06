@@ -1,5 +1,5 @@
-<div class="m-4">
-    <div class="d-flex">
+<div class="container">
+    <div class="heading">
         <button type="button" class="btn btn-outline-success" (click)="showAddDialog()">
             Add New Record
         </button>
@@ -14,39 +14,40 @@
                 (ngModelChange)="performSearch($event)">
         </div>
     </div>
-    <h1>Transaction Records</h1>
-    <div class="overflow-auto" style="max-height: 85vh;">
+    <div class="title">
+        <h3>Transaction Records</h3>
+    </div>
+    <div class="contents">
         <div *ngIf="records.length < 1">
             <h3>Nothing to show...</h3>
         </div>
-        <ng-container *ngFor="let item of records">
-            <div class="card col-md-8 m-2" [ngClass]="[item.categoryType === 'income' ? 'green-card' : 'red-card' ]">
-                <div class="card-body">
-                    <p>{{ item.transactionDate | date: 'medium' }}</p>
-                    <p>Transaction amount:  &#8369;{{ item.amount | number: '.2' }} </p>
-                    <div class="row">
-                        <div class="col">
-                            <p> {{ item.categoryType | uppercase }} </p>
-                        </div>
-                        <div class="col">
-                            <p> {{ item.categoryName }} </p>
-                        </div>
-                        <div class="col">
-                            <p> {{ item.description }} </p>
-                        </div>
-                        <div class="col">
-                            <button type="button" class="btn btn-outline-dark border-0" (click)="showUpdateDialog(item)">
-                                <i class="bi bi-pencil"></i>
-                            </button>
-                            <button type="button" class="btn btn-outline-danger border-0" (click)="deleteRecord(item)">
-                                <i class="bi bi-trash"></i>
-                            </button>
-                        </div>
+        <div *ngFor="let item of records" class="card" 
+            [ngClass]="[item.categoryType === 'income' ? 'green-card' : 'red-card' ]">
+            <div class="card-body">
+                <p>{{ item.transactionDate | date: 'medium' }}</p>
+                <p>Transaction amount:  &#8369;{{ item.amount | number: '.2' }} </p>
+                <div class="row">
+                    <div class="col-2">
+                        <p> {{ item.categoryType | uppercase }} </p>
                     </div>
-                    <p>Ending balance: &#8369;{{ item.balance | number: '.2' }} </p>
+                    <div class="col-4">
+                        <p> {{ item.categoryName }} </p>
+                    </div>
+                    <div class="col-4">
+                        <p> {{ item.description }} </p>
+                    </div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-outline-dark border-0" (click)="showUpdateDialog(item)">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                        <button type="button" class="btn btn-outline-danger border-0" (click)="deleteRecord(item)">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
                 </div>
+                <p>Ending balance: &#8369;{{ item.balance | number: '.2' }} </p>
             </div>
-        </ng-container>
+        </div>
     </div>
 </div>
 

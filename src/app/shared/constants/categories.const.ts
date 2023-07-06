@@ -102,7 +102,7 @@ export const CATEGORY_EXPENSES: Category[] = [
         defined_id: 23,
         type: EX,
         name: 'Child Care',
-        icon: '',
+        icon: 'bi bi-calendar-heart',
         isPredefined: true
     },
     {
@@ -123,7 +123,7 @@ export const CATEGORY_EXPENSES: Category[] = [
         defined_id: 26,
         type: EX,
         name: 'Retirement',
-        icon: '',
+        icon: 'bi bi-person',
         isPredefined: true
     },
     {
@@ -137,7 +137,7 @@ export const CATEGORY_EXPENSES: Category[] = [
         defined_id: 28,
         type: EX,
         name: 'Others',
-        icon: '',
+        icon: 'bi bi-three-dots',
         isPredefined: true
     }
 ]

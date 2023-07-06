@@ -1,0 +1,28 @@
+.container {
+    padding: 20px;
+
+    .heading {
+        display: flex;
+
+    }
+
+    .title {
+        display: flex;
+        justify-content: center;
+        margin: 15px 0 5px 0;
+    }
+
+    .contents {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        overflow: auto;
+        height: 80vh;
+
+        .card {
+            width: 800px;
+            margin: 5px;
+        }
+
+    }
+}
