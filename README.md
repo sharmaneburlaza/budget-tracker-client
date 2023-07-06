@@ -12,15 +12,15 @@
 - Separate Pie Charts for income and expense showing the breakdowns by Category Name  
 - Bar Chart showing the monthly difference between Income and Expense  
 - User can:  
--register through email  
--be authenticated and login  
--add categories under Income and Expense types  
--edit category names  
--view a table showing his/her transaction categories  
--add records under corresponding category types and category names  
--edit and delete records  
--view a table showing his/her detailed records  
--search through and filter the Category and Records table  
+    - register through email  
+    - be authenticated and login  
+    - add categories under Income and Expense types  
+    - edit category names  
+    - view a table showing his/her transaction categories  
+    - add records under corresponding category types and category names  
+    - edit and delete records  
+    - view a table showing his/her detailed records  
+    - search through and filter the Category and Records table  
 
 ## Tool
 
