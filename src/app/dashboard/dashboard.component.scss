@@ -1,0 +1,109 @@
+@import '../../styles/variables';
+
+.dashboard {
+    padding: 20px;
+
+    .balance-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 15vh;
+        background-color: $alabaster;
+
+        h2 {
+            color: $marine-blue;
+        }
+    }
+    
+    .charts-container {
+        margin-top: 10px;
+    
+        .savings-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 15vh;
+
+
+            h4 {
+                align-self: center;
+                color: $marine-blue;
+                // margin-bottom: 100px;
+            }
+
+            .bar-income, .bar-expense {
+                display: flex;
+                justify-content: flex-end;
+
+                .label {
+                    // width: 500px;
+                }
+
+                .progress {
+                    width: 500px;
+                    margin-left: 20px;
+                }
+            }
+
+            .bar-income {
+                .progress-bar {
+                    background-color: rgb(93, 176, 93);
+                }
+            }
+
+            .bar-expense {
+                .progress-bar {
+                    background-color: rgb(237, 62, 62);
+                }
+            }
+        }
+    }
+
+    .sub-info {
+        margin-top: 10px;
+        display: flex;
+        height: 60vh;
+
+        .trend-container {
+            margin-right: 10px;
+            width: 65vw
+        }
+
+        .card.spending-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            height: 60vh;
+            width: 13vw;
+
+            h5 {
+                // align-self: center !important;
+            }
+
+            .spending-card {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                width: 160px;
+                height: 12vh;
+                margin-top: 5px;
+                border-color: red;
+
+                i {
+                    font-size: 40px;
+                    margin-right: 10px;
+                }
+
+                .info {
+                    p {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+
+    }
+}
+

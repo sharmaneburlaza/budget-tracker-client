@@ -1,5 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.css';
+@import './styles/variables';
+
+* {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
 
 #register-container {
     background: #acb6e5;  /* fallback for old browsers */
@@ -15,10 +21,6 @@
 
 #signup, #signin {
     width: 100%;
-}
-
-input, p, h3, button {
-    font-family: 'Montserrat', sans-serif;
 }
 
 .custom-input {

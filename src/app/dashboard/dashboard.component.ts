@@ -26,8 +26,8 @@ export class DashboardComponent {
   categories: Category[] = [];
   balance: number = 0;
   currentMonth: CurrentMonth | undefined;
-  expectedIncome: number = 30000;
-  expectedExpense: number = 2000;
+  expectedIncome: number = 50000;
+  expectedExpense: number = 30000;
   topSpending: any = [];
 
   constructor(

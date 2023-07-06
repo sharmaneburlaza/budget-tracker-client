@@ -1,25 +1,23 @@
-<div class="container-fluid">
-    <div class="row">
-      <div class="col-2 sidebar" *ngIf="isLoggedIn" style="padding: 0;">
-        <div class="text-center" style="margin: 3vh 0;">
-          <img src="../assets/images/avatar.png" alt="" style="height: 15vh;">
-          <h6> {{ user?.firstName }} {{ user?.lastName }}</h6>
+<div class="main-container">
+    <div class="side-bar" *ngIf="isLoggedIn">
+        <div class="profile-container">
+            <img src="../assets/images/avatar.png" alt="" style="height: 15vh;">
+            <h6> {{ user?.firstName }} {{ user?.lastName }}</h6>
         </div>
         <div class="list-group">
-          <div style="height: 68vh;">
-            <ng-container  *ngFor="let item of paths">
-              <a class="list-group-item list-group-item-action" [routerLink]="item.path" [routerLinkActive]="['active']">
-                <i class={{item.icon}}></i> <label for="" style="padding-left: 10px;"> {{ item.name }} </label>
-              </a>
-          </ng-container>
-          </div>
-          <a class="list-group-item list-group-item-action" (click)="logout()"> 
-            <i class="bi bi-box-arrow-right"></i> sign-out 
-          </a>
+            <div class="paths-container">
+                <ng-container  *ngFor="let item of paths">
+                    <a class="list-group-item list-group-item-action" [routerLink]="item.path" [routerLinkActive]="['active']">
+                        <i class={{item.icon}}></i> <label for="" style="padding-left: 10px;"> {{ item.name }} </label>
+                    </a>
+                </ng-container>
+            </div>
+            <a class="list-group-item list-group-item-action" (click)="logout()"> 
+                <i class="bi bi-box-arrow-right"></i> sign-out 
+            </a>
         </div>
-      </div>
-      <div class="col content" style="padding: 0;">
+    </div>
+    <div class="content">
         <router-outlet></router-outlet>
-      </div>
     </div>
 </div>

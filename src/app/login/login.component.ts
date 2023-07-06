@@ -35,10 +35,10 @@ export class LoginComponent implements OnInit {
     if (!(email || password)) {
       return;
     }
-    this.authService.emailExists(email).pipe(first()).subscribe(result => {
+    this.authService.emailExists(email).subscribe(result => {
       if (result) {
-        this.login({email, password});
         this.isLoginSuccessful = true;
+        this.login({email, password});
       } else {
         this.errorMessage = 'Email does not exist.';
         this.isLoginSuccessful = false;
@@ -47,12 +47,12 @@ export class LoginComponent implements OnInit {
   }
 
   login(loginInfo: LoginInfo): void {
-    this.authService.login(loginInfo).pipe(first()).subscribe(
+    console.log(loginInfo)
+    this.authService.login(loginInfo).subscribe(
       async data => {
         if (!data.error) {
           this.tokenStorage.saveToken(data.accessToken);
           this.tokenStorage.saveUser(data);
-          this.isLoginSuccessful = true;
           await this.router.navigate(['/dashboard']);
           window.location.reload();
         } else {

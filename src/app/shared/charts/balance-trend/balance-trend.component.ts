@@ -56,7 +56,7 @@ export class BalanceTrendComponent {
           datasets: [
             {
               data: this.trendBalance,
-              label: 'Series A',
+              label: 'Balance Trend',
               fill: true,
               tension: 0.5,
               borderColor: 'black',

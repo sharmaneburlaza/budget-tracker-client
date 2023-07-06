@@ -1,15 +1,13 @@
-<div class="m-4 text-center">
-    <div class="card p-4">
+<div class="dashboard">
+    <div class="card balance-container">
         <h2> Current Balance: &#8369; {{ balance | number: '.2' }} </h2>
     </div>
-    <div class="overflow-auto" style="max-height: 80vh;">
-        <div class="card my-2 py-4">
+    <div class="charts-container">
+        <div class="card savings-container">
             <h4 class="my-2">{{ currentMonth?.name }} Savings: &#8369; {{ currentMonth?.savings | number: '.2' }}</h4>
-            <div class="row">
-                <div class="col-3">
+            <div class="bars-container">
+                <div class="bar-income">
                     <label for="">Income vs Expected</label>
-                </div>
-                <div class="col-9">
                     <div class="progress my-1">
                         <div class="progress-bar" role="progressbar" 
                             [ngStyle]="{'width': currentMonth?.incomeVsExpected}" 
@@ -19,12 +17,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-3">
+                <div class="bar-expense">
                     <label for="">Expense vs Expected</label>
-                </div>
-                <div class="col-9">
                     <div class="progress my-1">
                         <div class="progress-bar" role="progressbar" 
                             [ngStyle]="{'width': currentMonth?.expenseVsExpected}"  
@@ -36,26 +30,20 @@
                 </div>
             </div>
         </div>
-        <div class="card my-2 p-2">
-            <h4 class="my-3">Top Spending of the Month</h4>
-            <div class="row">
-                <ng-container *ngFor="let item of topSpending">
-                    <div class="col-3">
-                        <div class="card">
-                            <div style="height: 10vh;">
-                                <i [class]="item.icon" style="font-size: 6vh;"></i>
-                            </div>
-                            <p> {{ item.name }} </p>
-                            <p> &#8369;{{ item.sum | number: '.2' }} </p>
-                        </div>
+        <div class="sub-info">
+            <div class="card trend-container">
+                <app-balance-trend></app-balance-trend>
+            </div>
+            <div class="card spending-container">
+                <h5>Top Spending of the Month</h5>
+                <div class="card spending-card" *ngFor="let item of topSpending">
+                    <i [class]="item.icon"></i>
+                    <div class="info">
+                        <p> {{ item.name }} </p>
+                        <p> &#8369;{{ item.sum | number: '.2' }} </p>
                     </div>
-                </ng-container>
+                </div>
             </div>
         </div>
-        <div class="card">
-            <app-balance-trend></app-balance-trend>
-        </div>
     </div>
-
 </div>
-

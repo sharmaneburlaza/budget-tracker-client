@@ -1,11 +1,36 @@
-.sidebar {
+@import '../styles/variables';
+
+.main-container {
+    display: flex;
+    width: 100vw;
     height: 100vh;
-    background-color: lightgray;
+
+    .side-bar {
+        width: 20vw;
+        height: 100vh;
+        background-color: $light_gray;
+
+        .profile-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 25vh;
+        }
+        
+        .paths-container {
+            height: 70vh;
+        }
+    }
+    
+    .content {
+        width: 80vw;
+        height: 100vh;
+        background-color: $magnolia;
+    }
 }
 
-.content {
-    height: 100vh;
-}
+
 
 a {
     background: transparent;
