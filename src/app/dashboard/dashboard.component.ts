@@ -110,9 +110,8 @@ export class DashboardComponent {
         sum: this.getSum(amounts),
         icon: icon
       }
-    })
+    }).sort((a, b) => b.sum - a.sum);
     this.topSpending = groupSum ? groupSum.slice(0, 4) : [];
-    console.log(this.topSpending)
   }
 
   ngOnDestroy(): void {
