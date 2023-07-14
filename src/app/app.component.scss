@@ -9,6 +9,11 @@
         width: 20vw;
         height: 100vh;
         background-color: $light_gray;
+        padding: 15px;
+
+        .profile-container, .paths-container {
+            background-color: rgba(211, 232, 250, 0.5);
+        }
 
         .profile-container {
             display: flex;
@@ -19,7 +24,13 @@
         }
         
         .paths-container {
-            height: 70vh;
+            height: calc(75vh - 30px); // minus padding
+
+            .bottom-paths {
+                position: fixed;
+                bottom: 15px;
+                width: calc(20vw - 30px);
+            }
         }
     }
     
@@ -34,4 +45,9 @@
 
 a {
     background: transparent;
+}
+
+.list-group-item.active {
+    background-color: $pastel_blue;
+    border: none;
 }

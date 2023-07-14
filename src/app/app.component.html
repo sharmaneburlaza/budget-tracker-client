@@ -4,17 +4,20 @@
             <img src="../assets/images/avatar.png" alt="" style="height: 15vh;">
             <h6> {{ user?.firstName }} {{ user?.lastName }}</h6>
         </div>
-        <div class="list-group">
-            <div class="paths-container">
-                <ng-container  *ngFor="let item of paths">
-                    <a class="list-group-item list-group-item-action" [routerLink]="item.path" [routerLinkActive]="['active']">
-                        <i class={{item.icon}}></i> <label for="" style="padding-left: 10px;"> {{ item.name }} </label>
-                    </a>
-                </ng-container>
+        <div class="list-group paths-container">
+            <div class="top-paths">
+                <a  *ngFor="let item of paths" 
+                    class="list-group-item list-group-item-action" 
+                    [routerLink]="item.path" 
+                    [routerLinkActive]="['active']">
+                    <i class={{item.icon}}></i>  {{ item.name }}
+                </a>
             </div>
-            <a class="list-group-item list-group-item-action" (click)="logout()"> 
-                <i class="bi bi-box-arrow-right"></i> sign-out 
-            </a>
+            <div class="bottom-paths">
+                <a class="list-group-item list-group-item-action" (click)="logout()"> 
+                    <i class="bi bi-box-arrow-right"></i> Sign-out 
+                </a>
+            </div>
         </div>
     </div>
     <div class="content">

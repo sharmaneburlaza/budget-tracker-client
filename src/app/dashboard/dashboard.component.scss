@@ -1,17 +1,24 @@
 @import '../../styles/variables';
 
 .dashboard {
-    padding: 20px;
+    height: 100vh;
+    padding: 10px;
 
     .balance-container {
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 15vh;
-        // background-color: $magnolia;
+        height: calc(100vh - 19vh - 60vh - 10px - 10px - 20px);
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
+        border: none;
 
-        h2 {
+        h1 {
             color: $purplish-blue;
+            margin-bottom: 0;
+
+            strong {
+                letter-spacing: 2px;
+            }
         }
     }
     
@@ -23,19 +30,18 @@
             justify-content: center;
             align-items: center;
             height: 19vh;
+            border: none;
+            box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
 
             h4 {
-                align-self: center;
+                height: 40px;
+                padding-bottom: 20px;
                 color: $marine-blue;
             }
 
             .bar-income, .bar-expense {
                 display: flex;
                 justify-content: flex-end;
-
-                .label {
-                    // width: 500px;
-                }
 
                 .progress {
                     width: 500px;
@@ -45,13 +51,13 @@
 
             .bar-income {
                 .progress-bar {
-                    background-color: rgb(93, 176, 93);
+                    background-color: rgb(93, 176, 93, 0.8);
                 }
             }
 
             .bar-expense {
                 .progress-bar {
-                    background-color: rgb(237, 62, 62);
+                    background-color: rgba(237, 62, 62, 0.8);
                 }
             }
         }
@@ -62,8 +68,13 @@
             height: 60vh;
     
             .trend-container {
+                display: flex;
+                justify-content: center;
                 margin-right: 10px;
-                width: 65vw
+                width: 65vw;
+                border: none;
+                box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
+                padding: 10px 40px;
             }
     
             .card.spending-container {
@@ -74,15 +85,18 @@
                 padding: 10px;
                 height: 60vh;
                 width: 13vw;
+                border: none;
+                box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
     
                 .spending-card {
                     display: flex;
                     flex-direction: row;
                     align-items: center;
                     width: 160px;
-                    height: 12vh;
-                    margin-top: 5px;
-                    border-color: red;
+                    height: 10vh;
+                    margin-top: 15px;
+                    border: none;
+                    box-shadow: 0px 0px 4px rgba(246, 3, 3, 0.8);
     
                     i {
                         font-size: 40px;

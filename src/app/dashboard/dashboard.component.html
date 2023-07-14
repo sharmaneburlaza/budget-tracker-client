@@ -1,10 +1,15 @@
 <div class="dashboard">
     <div class="card balance-container">
-        <h2> Current Balance: &#8369; {{ balance | number: '.2' }} </h2>
+        <h1> Current Balance: 
+            <strong>&#8369; {{ balance | number: '.2' }} </strong>
+        </h1>
     </div>
     <div class="charts-container">
         <div class="card savings-container">
-            <h4 class="my-2">{{ currentMonth?.name }} Savings: &#8369; {{ currentMonth?.savings | number: '.2' }}</h4>
+            <h4 class="my-2">
+                {{ currentMonth?.name }} Savings: &#8369; {{ currentMonth?.savings | number: '.2' }} 
+                <i class="bi bi-info-circle" style="font-size: 14px;"></i>
+            </h4>
             <div class="bars-container">
                 <div class="bar-income">
                     <label for="">Income vs Expected</label>
