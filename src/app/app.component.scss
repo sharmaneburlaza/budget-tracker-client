@@ -8,11 +8,11 @@
     .side-bar {
         width: 20vw;
         height: 100vh;
-        background-color: $light_gray;
+        background-color: rgba(211, 232, 250, 0.5);
         padding: 15px;
 
         .profile-container, .paths-container {
-            background-color: rgba(211, 232, 250, 0.5);
+            // background-color: rgba(211, 232, 250, 0.5);
         }
 
         .profile-container {
@@ -41,13 +41,25 @@
     }
 }
 
-
+label {
+    padding-left: 10px;
+}
 
 a {
     background: transparent;
 }
 
+.list-group-item {
+    border: none;
+}
+
 .list-group-item.active {
     background-color: $pastel_blue;
     border: none;
+    border-radius: 6px;
+}
+
+.list-group-item:hover {
+    border: none;
+    border-radius: 6px;
 }

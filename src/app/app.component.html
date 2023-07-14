@@ -10,12 +10,14 @@
                     class="list-group-item list-group-item-action" 
                     [routerLink]="item.path" 
                     [routerLinkActive]="['active']">
-                    <i class={{item.icon}}></i>  {{ item.name }}
+                    <i class={{item.icon}}></i>
+                    <label for="">{{ item.name }}</label>
                 </a>
             </div>
             <div class="bottom-paths">
                 <a class="list-group-item list-group-item-action" (click)="logout()"> 
-                    <i class="bi bi-box-arrow-right"></i> Sign-out 
+                    <i class="bi bi-box-arrow-right"></i> 
+                    <label for="">Sign-out</label>
                 </a>
             </div>
         </div>
