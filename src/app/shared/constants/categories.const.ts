@@ -74,7 +74,7 @@ export const CATEGORY_EXPENSES: Category[] = [
         defined_id: 19,
         type: EX,
         name: 'Shopping',
-        icon: 'bi bi-cart',
+        icon: 'bi bi-bag',
         isPredefined: true
     },
     {

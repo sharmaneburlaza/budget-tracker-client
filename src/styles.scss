@@ -31,6 +31,9 @@
 .column1-register, .column2-signin {
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
 }
 
 .column1-register {
@@ -57,5 +60,10 @@
 }
 
 .font-xs {
+    font-size: 10px;
+}
+
+.copyright {
+    color: aliceblue;
     font-size: 10px;
 }
