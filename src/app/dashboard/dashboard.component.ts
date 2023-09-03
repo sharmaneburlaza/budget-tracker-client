@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserService } from '../shared/services/user.service';
+import { UserService } from '../services/user.service';
 import { Category, Record } from '../shared/models/model';
 import * as moment from 'moment';
 import { CATEGORY_EXPENSES } from '../shared/constants/categories.const';

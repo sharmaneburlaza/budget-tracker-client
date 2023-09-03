@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of, Subject, tap } from 'rxjs';
-import { Category, User, Record } from '../models/model';
+import { Category, User, Record } from '../shared/models/model';
 import { TokenStorageService } from './token-storage.service';
 
 @Injectable({

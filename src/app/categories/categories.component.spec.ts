@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DialogService } from 'primeng/dynamicdialog';
-import { UserService } from '../shared/services/user.service';
+import { UserService } from '../services/user.service';
 import { CategoriesComponent } from './categories.component';
 import { MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';

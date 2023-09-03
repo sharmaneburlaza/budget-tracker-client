@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from './shared/models/model';
-import { AuthService } from './shared/services/auth.service';
-import { TokenStorageService } from './shared/services/token-storage.service';
-import { UserService } from './shared/services/user.service';
+import { AuthService } from './services/auth.service';
+import { TokenStorageService } from './services/token-storage.service';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',

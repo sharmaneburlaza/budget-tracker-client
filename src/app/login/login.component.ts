@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { LoginInfo } from '../shared/models/model';
-import { AuthService } from '../shared/services/auth.service';
-import { TokenStorageService } from '../shared/services/token-storage.service';
+import { AuthService } from '../services/auth.service';
+import { TokenStorageService } from '../services/token-storage.service';
 
 @Component({
   selector: 'app-login',

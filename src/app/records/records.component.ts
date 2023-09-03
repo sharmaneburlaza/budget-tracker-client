@@ -4,7 +4,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { Subject, takeUntil } from 'rxjs';
 import { CATEGORY_EXPENSES, CATEGORY_INCOME } from '../shared/constants/categories.const';
 import { Category, CategoryType, Record, User } from '../shared/models/model';
-import { UserService } from '../shared/services/user.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-records',

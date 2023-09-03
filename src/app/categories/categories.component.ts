@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Category, Record, User } from '../shared/models/model';
-import { UserService } from '../shared/services/user.service';
+import { UserService } from '../services/user.service';
 import { DialogService } from 'primeng/dynamicdialog';
 import { CATEGORY_EXPENSES, CATEGORY_INCOME } from '../shared/constants/categories.const';
 import { Subject, takeUntil } from 'rxjs';

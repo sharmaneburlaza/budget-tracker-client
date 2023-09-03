@@ -1,7 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BalanceTrendComponent } from '../shared/charts/balance-trend/balance-trend.component';
-import { UserService } from '../shared/services/user.service';
+import { UserService } from '../services/user.service';
 
 import { DashboardComponent } from './dashboard.component';
 

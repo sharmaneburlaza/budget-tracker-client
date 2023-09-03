@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Record } from '../../models/model';
 import { Chart, registerables } from 'chart.js';
-import { UserService } from '../../services/user.service';
+import { UserService } from '../../../services/user.service';
 import * as moment from 'moment';
 
 Chart.register(...registerables);

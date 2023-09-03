@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LoginInfo, RegisterInfo } from '../models/model';
+import { LoginInfo, RegisterInfo } from '../shared/models/model';
 
 const TOKEN_KEY = 'auth-token';
 
